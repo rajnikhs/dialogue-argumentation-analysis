@@ -1,0 +1,31 @@
+=== SCHEME PREDICTOR CLASSIFICATION REPORT ===
+
+Test Accuracy: 0.2482
+
+Classification Metrics:
+                            precision    recall  f1-score   support
+
+                ad hominem       0.08      0.11      0.10         9
+                   analogy       0.08      0.50      0.14         2
+         appeal to emotion       0.00      0.00      0.00         1
+appeal to popular practice       0.00      0.00      0.00         0
+              consequences       0.00      0.00      0.00         2
+         direct ad hominem       0.71      0.17      0.27       102
+            emotive appeal       1.00      1.00      1.00         1
+          established rule       0.30      0.65      0.41        17
+            expert opinion       0.18      0.55      0.27        11
+                 ignorance       0.00      0.00      0.00         1
+   inconsistent commitment       0.11      0.25      0.15         4
+           popular opinion       0.27      0.17      0.21        18
+          popular practice       0.28      0.21      0.24        24
+          position to know       0.00      0.00      0.00         2
+       practical reasoning       0.40      0.46      0.42        37
+            slippery slope       0.33      0.13      0.19        31
+                sunk costs       0.05      1.00      0.10         1
+                    threat       0.03      0.08      0.04        12
+     verbal classification       0.12      0.17      0.14         6
+                     waste       0.00      0.00      0.00         1
+
+                  accuracy                           0.25       282
+                 macro avg       0.20      0.27      0.18       282
+              weighted avg       0.42      0.25      0.26       282
