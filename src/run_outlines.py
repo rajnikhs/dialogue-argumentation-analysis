@@ -1,5 +1,7 @@
 import os
 os.environ["TRITON_INTERPRET"] = "1"
+os.environ["TORCHINDUCTOR_COMPILE_THREADS"] = "1"
+os.environ["TRITON_CEXT_DISABLE"] = "1" 
 
 import pandas as pd
 import torch
@@ -9,7 +11,7 @@ import outlines
 
 print("--- Starting Outlines-Constrained Argumentation Scheme Inference Pipeline ---")
 
-# 1. Define the exact 22 valid schemes using Literal (Outlines v1.3.3 native choice constraint)
+# 1. Define the exact 22 valid schemes using Literal (native outlines v1 pattern)
 ValidSchemes = Literal[
     "Direct Ad Hominem",
     "Inconsistent Commitment",
@@ -53,7 +55,7 @@ hf_model = AutoModelForCausalLM.from_pretrained(
 # Initialize outlines model instance using from_transformers
 model = outlines.from_transformers(hf_model, tokenizer)
 
-# 4. Define the inference function with the full few-shot definitions prompt
+# 4. Define the inference function using native type-constrained model call
 def infer_scheme(text):
     prompt = f"""You are a 22 class classifier with the goal of classifying the argumentative input into one of the different argumentation scheme classes. Argumentation schemes are defined as follows:
 
@@ -284,12 +286,12 @@ ARGUMENT:
 
 Scheme:"""
     
-    # Clean standard call compatible with Outlines
+    # Pass the Literal type directly to the model call as required by this outlines version
     predicted_scheme = model(prompt, ValidSchemes)
     return predicted_scheme
 
 # 5. Run inference across the dataset
-print("Running constrained inference across the dataset with few-shot prompt...")
+print("Running constrained inference across the dataset...")
 schemes = []
 for idx, row in df.iterrows():
     text = row['displayed_text']
