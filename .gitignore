@@ -1,6 +1,5 @@
 venv/
-*.csv
-*.xlsx
-*.png
 __pycache__/
-.DS_Store
+*.pyc
+.ipynb_checkpoints/
+qt_schemes_repo/
